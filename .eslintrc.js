@@ -17,6 +17,6 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     indent: "error",
     camelcase: "off",
-    "@typescript-eslint/camelcase": ["warn"],
+    "@typescript-eslint/camelcase": "off",
   },
 }
