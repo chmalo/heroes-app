@@ -1,10 +1,13 @@
 import * as React from "react"
-import { Navigate, useParams } from "react-router-dom"
+import { Navigate, useNavigate, useParams } from "react-router-dom"
 import { getHeroById } from "../../selectors/getHeroById"
+import { useMemo } from "react"
 
 export const HeroScreen = () => {
   const { heroId } = useParams()
-  const hero = getHeroById(heroId)
+  const hero = useMemo(() => getHeroById(heroId), [heroId])
+
+  const navigate = useNavigate()
 
   if (!hero) {
     return <Navigate to={"/"} />
@@ -14,15 +17,23 @@ export const HeroScreen = () => {
 
   const imagePath = `/assets/${id}.jpg`
 
+  const handleReturn = () => {
+    navigate(-1)
+  }
+
   return (
     <div className="row mt-5">
       <div className="col-4">
-        <img src={imagePath} alt={superhero} className="img-thumbnail" />
+        <img
+          src={imagePath}
+          alt={superhero}
+          className="img-thumbnail animate__animated animate__fadeInLeft"
+        />
       </div>
 
       <div className="col-8">
         <h3>{superhero}</h3>
-        <ul className="list-group">
+        <ul className="list-group list-group-flush">
           <li className="list-group-item">
             <b>Publisher:</b> {publisher}
           </li>
@@ -33,6 +44,13 @@ export const HeroScreen = () => {
             <b>First appearance:</b> {first_appearance}
           </li>
         </ul>
+
+        <h5 className="mt-3">Characters</h5>
+        <p>{characters}</p>
+
+        <button className="btn btn-outline-info" onClick={handleReturn}>
+          Regresar
+        </button>
       </div>
     </div>
   )
