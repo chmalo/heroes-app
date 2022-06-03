@@ -1,11 +1,7 @@
 import { types } from "../types/types"
-import { AuthState } from "../interfaces/interfaces"
+import { User } from "../interfaces/interfaces"
 
-// type AuthAction =
-//   | { type: "login"; payload: User }
-//   | { type: "logout"; payload: User }
-
-export const authReducer = (state: AuthState, action: any) => {
+export const authReducer = (state: User, action: any) => {
   switch (action.type) {
     case types.login:
       return {
@@ -17,6 +13,6 @@ export const authReducer = (state: AuthState, action: any) => {
         logged: false,
       }
     default:
-      break
+      return state
   }
 }
