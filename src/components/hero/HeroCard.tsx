@@ -15,7 +15,7 @@ export const HeroCard = ({
   first_appearance: string
   characters: string
 }) => {
-  const imagePath = `/assets/${id}.jpg`
+  const imagePath = `../assets/${id}.jpg`
 
   return (
     <div className="col-6 animate__animated animate__fadeIn">
